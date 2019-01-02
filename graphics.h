@@ -2,11 +2,9 @@ using namespace sf;
 
 void Graphics()
 {
-    //это выводится в терминал
     system("clear");
     cout << "score: " << score << endl;
 
-    //это в окно
         for (int i = 0; i < height; ++i)
         {
             for (int j = 0; j < width ; ++j)

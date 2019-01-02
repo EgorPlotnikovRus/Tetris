@@ -14,19 +14,19 @@ void BufferGraphics()
     {
         for(int i = 0; i < width + 1; ++i)
         {
-            if(i == 0 || i == width - 1)// боковые стенки
+            if(i == 0 || i == width - 1)
             {
                 field[f][i] = 2;
             }
 
-            if(ind[i][f] == 1)//фигура падающая
+            if(ind[i][f] == 1)
                 field[f][i] = 1;
 
             else
             {
             bool print = 0;
 
-                    if(figures[i][f] == 1)//фигуры уже упавшие
+                    if(figures[i][f] == 1)
                     {
                         if(i < width)
                         {
@@ -45,14 +45,14 @@ void BufferGraphics()
     {
         for(int i = 0; i < width + 1; ++i)
         {
-            if(i == 0 || i == width - 1)// боковые стенки
+            if(i == 0 || i == width - 1)
             {
                 field[f][i] = 2;
             }
         }
     }
 
-    for(int w = 0; w < width; ++w)// дно
+    for(int w = 0; w < width; ++w)
     {
         field[height - 1][w] = 2;
     }

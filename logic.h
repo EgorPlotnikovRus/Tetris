@@ -4,21 +4,12 @@ void Logic()
 
     speed = 50000;
 
-    for(int h = 0; h < height; ++h)
-        for(int w = 0; w < width; ++w)
-        {
-            ind[w][h] = 0;
-            Fig1[w][h] = 0;
-            Fig2[w][h] = 0;
-            Fig3[w][h] = 0;
-            Fig4[w][h] = 0;
-        }
+    zeroing();
 
     ++y;
 
     shapes.ChoiceFigure(choice, pos);
 
-//падение кубика
     switch (dir)
     {
     case LEFT:
@@ -38,15 +29,7 @@ void Logic()
 
             }
 
-        for(int h = 0; h < height; ++h)
-            for(int w = 0; w < width; ++w)
-            {
-                ind[w][h] = 0;
-                Fig1[w][h] = 0;
-                Fig2[w][h] = 0;
-                Fig3[w][h] = 0;
-                Fig4[w][h] = 0;
-            }
+        zeroing();
 
         shapes.ChoiceFigure(choice, pos);
         }
@@ -68,15 +51,7 @@ void Logic()
 
             }
 
-        for(int h = 0; h < height; ++h)
-            for(int w = 0; w < width; ++w)
-            {
-                ind[w][h] = 0;
-                Fig1[w][h] = 0;
-                Fig2[w][h] = 0;
-                Fig3[w][h] = 0;
-                Fig4[w][h] = 0;
-            }
+        zeroing();
 
         shapes.ChoiceFigure(choice, pos);
         }
@@ -101,60 +76,32 @@ void Logic()
         window.close();
     }
 
-//проверка на столкновение с дном
     for(int w = 0; w < width; ++w)
             if(Fig1[w][height - 2] == 1 || Fig2[w][height - 2] == 1 || Fig3[w][height - 2] == 1 || Fig4[w][height - 2] == 1)
             {
-                for(int h = 0; h < height; ++h)
-                    for(int w = 0; w < width; ++w)
-                    {
-                        ind[w][h] = 0;
-                        Fig1[w][h] = 0;
-                        Fig2[w][h] = 0;
-                        Fig3[w][h] = 0;
-                        Fig4[w][h] = 0;
-                    }
+                zeroing();
 
                 shapes.ChoiceFigure(choice, pos);
 
                 Fall = 0;
             }
 
-//проверка на столкновение с другими фигурами снизу
-    for(int w = 0; w < width; ++w)
+   for(int w = 0; w < width; ++w)
         for(int h = 0; h < height; ++h)
             if((Fig1[w][h - 1] == 1 || Fig2[w][h - 1] == 1 || Fig3[w][h - 1] == 1 || Fig4[w][h - 1] == 1) && figures[w][h] == 1)
             {
-                for(int h = 0; h < height; ++h)
-                    for(int w = 0; w < width; ++w)
-                    {
-                        ind[w][h] = 0;
-                        Fig1[w][h] = 0;
-                        Fig2[w][h] = 0;
-                        Fig3[w][h] = 0;
-                        Fig4[w][h] = 0;
-                    }
+                zeroing();
 
                 shapes.ChoiceFigure(choice, pos);
 
                 Fall = 0;
             }
 
-
-//проверка на столкновение со сторонами
     for(int h = 0; h < height; ++h)
     {
-        if(Fig3[width - 1][h] == 1 || Fig4[width - 1][h] == 1)//проверка на столкновение с правой стороной
+        if(Fig3[width - 1][h] == 1 || Fig4[width - 1][h] == 1)
         {
-            for(int h = 0; h < height; ++h)
-              for(int w = 0; w < width; ++w)
-                {
-                    ind[w][h] = 0;
-                    Fig1[w][h] = 0;
-                    Fig2[w][h] = 0;
-                    Fig3[w][h] = 0;
-                    Fig4[w][h] = 0;
-                }
+            zeroing();
 
                 --x;
             
@@ -166,17 +113,9 @@ void Logic()
 
     for(int h = 0; h < height; ++h)
     {
-        if(Fig1[0][h] == 1 || Fig2[0][h] == 1)//проверка на столкновени с левой стороной
+        if(Fig1[0][h] == 1 || Fig2[0][h] == 1)
         {
-            for(int h = 0; h < height; ++h)
-              for(int w = 0; w < width; ++w)
-                {
-                    ind[w][h] = 0;
-                    Fig1[w][h] = 0;
-                    Fig2[w][h] = 0;
-                    Fig3[w][h] = 0;
-                    Fig4[w][h] = 0;
-                }
+            zeroing();
 
                 ++x;
             
@@ -184,7 +123,6 @@ void Logic()
         }
     }
 
-//стирание ряда
     for(int w = width; w > 0; --w)
     {
         for(int h = 1; h < height - 2; ++h)
@@ -218,7 +156,6 @@ void Logic()
         row = 0;
     }
 
-//проверка на проигриш
     for(int w = 0; w < width; ++w)
         if(figures[w][1] == 1)
         {
@@ -226,7 +163,6 @@ void Logic()
             window.close();
         }
 
-//занесение значений в массив
     while(!Fall)
     {
         for(int h = 0; h < height; ++h)
@@ -253,15 +189,7 @@ void Logic()
                 }
             }
 
-        for(int h = 0; h < height; ++h)
-            for(int w = 0; w < width; ++w)
-            {
-                ind[w][h] = 0;
-                Fig1[w][h] = 0;
-                Fig2[w][h] = 0;
-                Fig3[w][h] = 0;
-                Fig4[w][h] = 0;
-            }
+        zeroing();
 
         x = 3 + (rand() % (width - 4));
         y = 0;
